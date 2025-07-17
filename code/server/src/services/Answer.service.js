@@ -9,8 +9,8 @@ class AnswerService {
         return await Answer.findByPk(id)
     }
 
-    static async getAllAnswersForThisQuestion(question_id){
-        return await Answer.findAll({where:{question_id: question_id}})
+    static async getAllAnswersForThisQuestion(id){
+        return await Answer.findAll({where: {question_id: id}})
     }
 }
 

@@ -31,7 +31,7 @@ class AnswerController {
     }
 
     try {
-        const answer = AnswerService.getById(id)
+        const answer = AnswerService.getById(+id)
 
         if(!answer) {
             return res.status(200).json(formatResponse(200, "Нет ответа с таким id", []));
@@ -56,7 +56,7 @@ class AnswerController {
     }
 
     try {
-        const answersForThisQuestion = AnswerService.getAllAnswersForThisQuestion(id)
+        const answersForThisQuestion = await AnswerService.getAllAnswersForThisQuestion(id)
 
         if(!answersForThisQuestion){
             return res.status(200).json(formatResponse(200, `Нет ответов для вопроса с id ${id}`, []));
@@ -64,7 +64,7 @@ class AnswerController {
 
         return res
         .status(200)
-        .json(formatResponse(200, "Отвутики жы есть!", answersForThisQuestion));
+        .json(formatResponse(200, `Все ответы для вопроса с id ${id}!`, answersForThisQuestion));
 
     } catch ({message}) {
         res.status(500).json(formatResponse(404, `Ответ с id ${id} не получен`, null, message))
