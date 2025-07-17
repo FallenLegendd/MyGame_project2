@@ -1,81 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "../model";
 import {
-  refreshTokensThunk,
-  signInThunk,
-  signOutThunk,
-  signUpThunk,
-} from '../api/GameApi';
-import { initialState } from '../model';
+  
+  getAllThunkGame,
+  getOneThunkGame
+} from "../api/GameApi";
 
-const userSLice = createSlice({
-  name: 'user',
-  initialState,
+const gameSlice = createSlice({
+  name: "game",
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(refreshTokensThunk.pending, (state) => {
+      .addCase(getAllThunkGame.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(refreshTokensThunk.fulfilled, (state, action) => {
+      .addCase(getAllThunkGame.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload;
-        state.isInitialized = true;
+        state.games = action.payload;
       })
-      .addCase(refreshTokensThunk.rejected, (state) => {
+      .addCase(getAllThunkGame.rejected, (state) => {
         state.isLoading = false;
-        state.user = null;
-        state.isInitialized = true;
+        state.error = null;
       })
-      .addCase(signUpThunk.pending, (state) => {
+      .addCase(getOneThunkGame.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(signUpThunk.fulfilled, (state, action) => {
+      .addCase(getOneThunkGame.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload;
-        state.isInitialized = true;
+        state.game = action.payload;
       })
-      .addCase(signUpThunk.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload?.error ?? null;
-        state.user = null;
-        state.isInitialized = true;
-      })
-      .addCase(signInThunk.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(signInThunk.fulfilled, (state, action) => {
+      .addCase(getOneThunkGame.rejected, (state) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload;
-        state.isInitialized = true;
-      })
-      .addCase(signInThunk.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload?.error ?? null;
-        state.user = null;
-        state.isInitialized = true;
-      })
-      .addCase(signOutThunk.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(signOutThunk.fulfilled, (state) => {
-        state.isLoading = false;
-        state.error = null;
-        state.user = null;
-        state.isInitialized = true;
-      })
-      .addCase(signOutThunk.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload?.error ?? null;
-        state.user = null;
-        state.isInitialized = true;
       }),
 });
-
-export const userReducer = userSLice.reducer;
+export const gameReducer = gameSlice.reducer;

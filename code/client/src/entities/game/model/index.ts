@@ -10,11 +10,18 @@ export interface GameType extends InitialGameType {
   updatedAt: string;
 }
 
-// export type GamesArrayType = Array<GameType>;
+export type GamesArrayType = Array<GameType>;
 
-// export const initialState: GameStateType = {
-//   game: null,
-//   isInitialized: false,
-//   error: null,
-//   isLoading: false,
-// };
+export type GameStateType = {
+  games: GamesArrayType | null;
+  game: GameType | null;
+  error: string | null;
+  isLoading: boolean;
+};
+
+export const initialState: GameStateType = {
+  games: null,
+  game: null,
+  error: null,
+  isLoading: false,
+};

@@ -1,82 +1,44 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosInstance, setAccessToken } from '../../../shared/lib/axiosInstance';
-import type { GameType } from '../model';
-import { handleAxiosError } from '../../../shared/utils/HandleAxiosError';
-import type { ServerResponseType } from '@/shared/types';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { axiosInstance } from "../../../shared/lib/axiosInstance";
+import type { ServerResponseType } from "../../../shared/types";
+import type { GamesArrayType, GameType } from "../model";
+import { handleAxiosError } from "../../../shared/utils/HandleAxiosError";
 
 enum GAME_THUNK_TYPES {
-  ALL_GAMES = 'games/games',
-  ONE_GAMES = 'games/',
+  GET_ALL_GAMES = "allgames/games",
+  GET_ONE_GAME = "onegame/game",
 }
 
 enum GAME_API_URLS {
-  REFRESH_TOKENS = 'auth/refreshTokens',
-  SIGN_UP = 'auth/signUp',
-  SIGN_IN = 'auth/signIn',
-  SIGN_OUT = 'auth/signOut',
+  GET_ALL_GAMES = "/game",
+  GET_ONE_GAME = "/game/:id",
 }
 
-export const refreshTokensThunk = createAsyncThunk<
-  UserType,
+export const getAllThunkGame = createAsyncThunk<
+  GamesArrayType,
   void,
   { rejectValue: ServerResponseType<null> }
->(USER_THUNK_TYPES.REFRESH_TOKENS, async (_, { rejectWithValue }) => {
+>(GAME_THUNK_TYPES.GET_ALL_GAMES, async (_, { rejectWithValue }) => {
   try {
     const response = await axiosInstance.get<
-      ServerResponseType<UserResponseType>
-    >(USER_API_URLS.REFRESH_TOKENS);
-
-    setAccessToken(response.data.data.accessToken);
-    return response.data.data.user;
+      ServerResponseType<GamesArrayType>
+    >(GAME_API_URLS.GET_ALL_GAMES);
+    return response.data.data;
   } catch (error) {
     return rejectWithValue(handleAxiosError(error));
   }
 });
 
-export const signUpThunk = createAsyncThunk<
-  UserType,
-  UserSignUpDataType,
+export const getOneThunkGame = createAsyncThunk<
+  GameType,
+  number,
   { rejectValue: ServerResponseType<null> }
->(USER_THUNK_TYPES.SIGN_UP, async (userData, { rejectWithValue }) => {
+>(GAME_THUNK_TYPES.GET_ONE_GAME, async (id, { rejectWithValue }) => {
   try {
-    const response = await axiosInstance.post<
-      ServerResponseType<UserResponseType>
-    >(USER_API_URLS.SIGN_UP, userData);
-
-    setAccessToken(response.data.data.accessToken);
-    return response.data.data.user;
-  } catch (error) {
-    return rejectWithValue(handleAxiosError(error));
-  }
-});
-
-export const signInThunk = createAsyncThunk<
-  UserType,
-  UserSignInDataType,
-  { rejectValue: ServerResponseType<null> }
->(USER_THUNK_TYPES.SIGN_IN, async (userData, { rejectWithValue }) => {
-  try {
-    const response = await axiosInstance.post<
-      ServerResponseType<UserResponseType>
-    >(USER_API_URLS.SIGN_IN, userData);
-
-    setAccessToken(response.data.data.accessToken);
-    return response.data.data.user;
-  } catch (error) {
-    return rejectWithValue(handleAxiosError(error));
-  }
-});
-
-export const signOutThunk = createAsyncThunk<
-  void,
-  void,
-  { rejectValue: ServerResponseType<null> }
->(USER_THUNK_TYPES.SIGN_OUT, async (_, { rejectWithValue }) => {
-  try {
-    await axiosInstance.get<ServerResponseType<null>>(USER_API_URLS.SIGN_OUT);
-
-    setAccessToken('');
-    return;
+    const response = await axiosInstance.get<ServerResponseType<GameType>>(
+      GAME_API_URLS.GET_ONE_GAME.replace(":id", id.toString())
+    );
+    return response.data.data;
   } catch (error) {
     return rejectWithValue(handleAxiosError(error));
   }
