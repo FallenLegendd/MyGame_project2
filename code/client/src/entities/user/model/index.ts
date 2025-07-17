@@ -2,7 +2,6 @@ export type UserSignUpDataType = {
   username: string;
   email: string;
   password: string;
-  repeatPassword: string;
 };
 
 export type UserSignInDataType = {
