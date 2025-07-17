@@ -33,21 +33,21 @@ module.exports = {
       {
         theme_name: 'История России',
         user_id: 1,
-        fullGame_score: 85,
+        fullGameScore: 85,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         theme_name: 'География мира',
         user_id: 2,
-        fullGame_score: 92,
+        fullGameScore: 92,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         theme_name: 'Литература XIX века',
         user_id: 3,
-        fullGame_score: 78,
+        fullGameScore: 78,
         createdAt: new Date(),
         updatedAt: new Date()
       }

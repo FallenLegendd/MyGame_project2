@@ -21,7 +21,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      fullGame_score: {
+      fullGameScore: {
         type: Sequelize.BIGINT
       },
       createdAt: {
