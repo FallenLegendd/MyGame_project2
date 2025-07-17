@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../../shared/lib/axiosInstance";
 import type { ServerResponseType } from "../../../shared/types";
-import type { GamesArrayType, GameType } from "../model";
+import type { GamesArrayType, GameType, InitialGameType } from "../model";
 import { handleAxiosError } from "../../../shared/utils/HandleAxiosError";
 
 enum GAME_THUNK_TYPES {
@@ -13,7 +13,7 @@ enum GAME_THUNK_TYPES {
 enum GAME_API_URLS {
   GET_ALL_GAMES = "/game",
   GET_ONE_GAME = "/game/:id",
-  CREATE_GAME = "/game",
+  CREATE_GAME = "/newGame",
 }
 
 export const getAllThunkGame = createAsyncThunk<
@@ -39,6 +39,22 @@ export const getOneThunkGame = createAsyncThunk<
   try {
     const response = await axiosInstance.get<ServerResponseType<GameType>>(
       GAME_API_URLS.GET_ONE_GAME.replace(":id", id.toString())
+    );
+    return response.data.data;
+  } catch (error) {
+    return rejectWithValue(handleAxiosError(error));
+  }
+});
+
+export const createThunkGame = createAsyncThunk<
+  GameType,
+  InitialGameType,
+  { rejectValue: ServerResponseType<null> }
+>(GAME_THUNK_TYPES.CREATE_GAME, async (gameData, { rejectWithValue }) => {
+  try {
+    const response = await axiosInstance.post<ServerResponseType<GameType>>(
+      GAME_API_URLS.CREATE_GAME,
+      gameData
     );
     return response.data.data;
   } catch (error) {
