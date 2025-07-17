@@ -1,6 +1,8 @@
 export enum CLIENT_ROUTES {
   HOME = "/",
-  LOGIN = "/auth/login",
-  LOGOUT = "logout",
-  REGISTER = "/auth/register",
+  LOGIN = "/auth/signIn",
+  LOGOUT = "/auth/signOut",
+  RESULT = "/result",
+  GAME = "/game",
+  REGISTER = "/auth/signUp",
 }
