@@ -5,7 +5,7 @@ const GameController = require('../controllers/Game.controller');
 gameRouter
   .get('/', GameController.getAll)
   .get('/:id', GameController.getById)
-  .post('/', GameController.create) //? добавить verifyAccessToken
+  .post('/newGame', GameController.create) //? добавить verifyAccessToken
 
 
 module.exports = gameRouter;

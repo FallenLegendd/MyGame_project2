@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../model";
 import {
   
+  createThunkGame,
   getAllThunkGame,
   getOneThunkGame
 } from "../api/GameApi";
@@ -37,6 +38,21 @@ const gameSlice = createSlice({
       .addCase(getOneThunkGame.rejected, (state) => {
         state.isLoading = false;
         state.error = null;
-      }),
+      })
+      .addCase(createThunkGame.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    })
+    .addCase(createThunkGame.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.game = action.payload;
+      //! Если нужно добавить в общий список игр:
+      // state.games = state.games ? [...state.games, action.payload] : [action.payload];
+    })
+    .addCase(createThunkGame.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload?.error || "Не удалось создать игру";
+    }),
 });
 export const gameReducer = gameSlice.reducer;
