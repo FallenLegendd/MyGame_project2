@@ -7,11 +7,13 @@ import { handleAxiosError } from "../../../shared/utils/HandleAxiosError";
 enum GAME_THUNK_TYPES {
   GET_ALL_GAMES = "allgames/games",
   GET_ONE_GAME = "onegame/game",
+  CREATE_GAME = "create/game",
 }
 
 enum GAME_API_URLS {
   GET_ALL_GAMES = "/game",
   GET_ONE_GAME = "/game/:id",
+  CREATE_GAME = "/game",
 }
 
 export const getAllThunkGame = createAsyncThunk<
