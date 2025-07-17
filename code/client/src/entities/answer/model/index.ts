@@ -7,8 +7,20 @@ export type AnswerType = {
     updatedAt: string;
 }
 
-export type AnswerArrayType = Array<AnswerArrayType>
+export type AnswerArrayType = Array<AnswerType>
 
-export type AnswerResponseType = {
+export type AnswerStateType = {
+    answers: AnswerArrayType | null;
+    answer: AnswerType | null;
+    correctAnswer: boolean | null;
+    error: string | null;
+    isLoading: boolean;
+}
 
+export const initialState: AnswerStateType = {
+    answers: null,
+    answer: null,
+    correctAnswer: null,
+    error: null,
+    isLoading: false,
 }

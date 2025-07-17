@@ -1,3 +1,4 @@
+import { answerReducer } from "@/entities/answer/slice/answerSlice";
 import { gameReducer } from "@/entities/game/slice/gameSlice";
 import { questionReducer } from "@/entities/question/slice/questionSlice";
 import { userReducer } from "@/entities/user/slice/userSlice";
@@ -6,8 +7,10 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: {
     user: userReducer,
+    answer: answerReducer,
     game: gameReducer,
     question: questionReducer,
+
   },
 });
 
