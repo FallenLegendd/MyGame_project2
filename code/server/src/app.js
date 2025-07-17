@@ -1,15 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const apiRouter = require('./routes/api.routes');
-const serverConfig = require('./config/serverConfig');
+require("dotenv").config();
+const express = require("express");
+const indexRouter = require("./routes/indexRouter");
+const serverConfig = require("./config/serverConfig");
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 serverConfig(app);
 
-app.use('/api', apiRouter);
+app.use("/api", indexRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
