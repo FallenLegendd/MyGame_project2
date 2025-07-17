@@ -1,12 +1,13 @@
 import { gameReducer } from "@/entities/game/slice/gameSlice";
+import { questionReducer } from "@/entities/question/slice/questionSlice";
 import { userReducer } from "@/entities/user/slice/userSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-
-    game: gameReducer
+    game: gameReducer,
+    question: questionReducer,
   },
 });
 

@@ -1,3 +1,5 @@
+import type { AnswerType } from "@/entities/answer/model";
+
 export interface InitialQuestionType {
   question: string;
   score: number;

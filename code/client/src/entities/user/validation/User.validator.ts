@@ -62,7 +62,6 @@ export class UserValidator {
     username,
     email,
     password,
-    repeatPassword,
   }: UserSignUpDataType): ValidatorResponseType {
     if (
       !username ||
@@ -84,13 +83,6 @@ export class UserValidator {
       return {
         isValid: false,
         error: "email должен быть валидным",
-      };
-    }
-
-    if (password !== repeatPassword) {
-      return {
-        isValid: false,
-        error: "Пароли должны совпадать",
       };
     }
 
