@@ -1,29 +1,24 @@
-/* import React, { useEffect, useId, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { UserValidator } from '@/entities/user/validation/User.validator';
-import { signInThunk } from '@/entities/user/api/UserApi';
-import type { UserSignInDataType } from '@/entities/user/model';
-import { AxiosError } from 'axios';
-import { CLIENT_ROUTES } from '@/shared/enums/clientRoutes';
-import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
-import { useAlerts } from '@/features/alert';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
+import type { UserSignInDataType } from "@/entities/user/model";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import { UserValidator } from "@/entities/user/validation/User.validator";
+import { signInThunk } from "@/entities/user/api/UserApi";
+import { CLIENT_ROUTES } from "@/shared/enums/clientRoutes";
 
 const INITIAL_INPUTS_DATA = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 export default function SignInForm() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState<UserSignInDataType>(INITIAL_INPUTS_DATA);
   const dispatch = useAppDispatch();
-  const { dispatch: alertDispatch } = useAlerts();
   const { isLoading: userLoading, error: userError } = useAppSelector(
     (state) => state.user
   );
-
-  const emailId = useId();
-  const passwordId = useId();
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
@@ -36,76 +31,50 @@ export default function SignInForm() {
       UserValidator.validateSignInData(inputs);
 
     if (!isValid) {
-      alertDispatch({
-        type: 'SHOW_WARNING',
-        payload: { message: validationError ?? '' },
-      });
+      console.log(validationError, "Ошибка валидации");
       return;
     }
 
     try {
-      const result = await dispatch(signInThunk(inputs)).unwrap();
-      alertDispatch({
-        type: 'SHOW_SUCCESS',
-        payload: {
-          message: 'С возвращением, ' + result.username,
-        },
-      });
+      await dispatch(signInThunk(inputs)).unwrap();
       setInputs(INITIAL_INPUTS_DATA);
-      navigate(CLIENT_ROUTES.TASKS);
+      navigate(CLIENT_ROUTES.HOME);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
-        alertDispatch({
-          type: 'SHOW_ERROR',
-          payload: {
-            message: error.message,
-          },
-        });
+        if (error instanceof AxiosError)
+          console.log("Какая то рандомная ошибка в форме входа");
       }
     }
   };
 
   useEffect(() => {
-    if (userError) {
-      alertDispatch({
-        type: 'SHOW_ERROR',
-        payload: { message: userError },
-      });
-    }
+    if (userError) console.log("какя то ошибка в форме входа в юзэффекте");
   }, [userError]);
 
-  console.log(passwordId);
-
   return (
-    <form onSubmit={onSubmitHandler}>
-      <label style={{ color: 'black' }} htmlFor={emailId}>
-        Email
-      </label>
-      <input
-        id={emailId}
-        placeholder='email'
-        type='email'
-        name='email'
-        required
-        value={inputs.email}
-        onChange={onChangeHandler}
-      />
-      <label style={{ color: 'black' }} htmlFor={passwordId}>
-        password
-      </label>
-      <input
-        id={passwordId}
-        placeholder='password'
-        type='password'
-        name='password'
-        required
-        value={inputs.password}
-        onChange={onChangeHandler}
-      />
-      <button type='submit' disabled={userLoading}>
-        {userLoading ? 'Загрузка...' : 'Войти'}
+    <form className="signin-form" onSubmit={onSubmitHandler}>
+      <h2>Вход</h2>
+      <div className="form-group">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email пользователя"
+          value={inputs.email}
+          onChange={onChangeHandler}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Пароль пользователя"
+          value={inputs.password}
+          onChange={onChangeHandler}
+          required
+        />
+      </div>
+      <button type="submit" disabled={userLoading}>
+        {userLoading ? "Загрузка..." : "Войти"}
       </button>
     </form>
   );
 }
- */
