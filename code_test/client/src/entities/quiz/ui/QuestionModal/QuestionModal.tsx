@@ -12,6 +12,8 @@ export default function QuestionModal() {
   const [timer, setTimer] = useState(20);
   const [loading, setLoading] = useState(true);
   const [questionText, setQuestionText] = useState<string>("");
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
     if (currentQuestion) {
@@ -45,14 +47,27 @@ export default function QuestionModal() {
     dispatch(
       checkCorrectThunk({ id: currentQuestion.id, answer: answerText })
     ).then((res: any) => {
+      console.log(
+        "Ответ сервера:",
+        res.payload,
+        "Отправленный ответ:",
+        answerText
+      );
+      const correct =
+        res.payload?.isCorrect === true || res.payload?.isCorrect === "true";
+      setIsCorrect(correct);
+      setShowResult(true);
       dispatch(
         answerQuestion({
           questionId: currentQuestion.id,
-          isCorrect: res.payload === true,
+          isCorrect: correct,
           value: currentQuestion.score,
         })
       );
-      setTimeout(() => dispatch(closeModal()), 500);
+      setTimeout(() => {
+        setShowResult(false);
+        dispatch(closeModal());
+      }, 800);
     });
   };
 
@@ -67,20 +82,41 @@ export default function QuestionModal() {
           <div className="quiz-modal-loading">Загрузка вариантов...</div>
         ) : (
           <div className="options quiz-modal-options">
-            {answers.map((opt, idx) => (
-              <button
-                key={opt.id}
-                className={
-                  selected === idx
-                    ? "selected quiz-modal-btn"
-                    : "quiz-modal-btn"
+            {answers.map((opt, idx) => {
+              let btnClass = "quiz-modal-btn";
+              if (selected !== null) {
+                if (opt.correct_answer) {
+                  btnClass += " correct";
                 }
-                onClick={() => handleAnswer(idx)}
-                disabled={selected !== null}
-              >
-                {opt.answer}
-              </button>
-            ))}
+                if (selected === idx) {
+                  btnClass += opt.correct_answer
+                    ? " selected"
+                    : " incorrect selected";
+                }
+              }
+              return (
+                <button
+                  key={opt.id}
+                  className={btnClass}
+                  onClick={() => handleAnswer(idx)}
+                  disabled={selected !== null}
+                >
+                  {opt.answer}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {showResult && selected !== null && isCorrect !== null && (
+          <div
+            style={{
+              marginTop: 8,
+              fontWeight: 600,
+              fontSize: "1.1rem",
+              color: isCorrect ? "#00c853" : "#ff1744",
+            }}
+          >
+            {isCorrect === true ? "Правильно!" : "Неправильно!"}
           </div>
         )}
         <div className="timer quiz-modal-timer">
