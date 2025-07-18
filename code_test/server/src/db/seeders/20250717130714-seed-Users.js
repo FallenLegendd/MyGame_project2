@@ -252,10 +252,40 @@ module.exports = {
             question: "В какой стране находится Великая китайская стена?",
             score: 200,
             answers: [
-              { text: "Китай", correct: true },
               { text: "Япония", correct: false },
               { text: "Монголия", correct: false },
+              { text: "Китай", correct: true },
               { text: "Индия", correct: false },
+            ],
+          },
+          {
+            question: "Сколько дней Земля делает оборот вокруг Солнца?",
+            score: 300,
+            answers: [
+              { text: "215 дней", correct: false },
+              { text: "371 день", correct: false },
+              { text: "362 дня", correct: false },
+              { text: "365 день, 5 часа, 59 минут и 16 секунды", correct: true },
+            ],
+          },
+           {
+            question: "Столицей какого европейского государства является город Вена?",
+            score: 400,
+            answers: [
+              { text: "Дания", correct: false },
+              { text: "Австрия", correct: true },
+              { text: "Италия", correct: false },
+              { text: "Швейцария", correct: false },
+            ],
+          },
+          {
+            question: "В какой европейской стране находится город Амстердам?",
+            score: 400,
+            answers: [
+              { text: "Швейцария", correct: false },
+              { text: "Дания", correct: false },
+              { text: "Швеция", correct: false },
+              { text: "Нидерланды", correct: true },
             ],
           },
         ],
