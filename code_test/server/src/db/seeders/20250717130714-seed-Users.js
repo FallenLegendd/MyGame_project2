@@ -88,17 +88,17 @@ module.exports = {
             ],
           },
           {
-            question: "Чего стоит боятся студента 1 фазы",
+            question: "Чего стоит бояться студентам 1 фазы?",
             score: 300,
             answers: [
-              { text: "React", correct: false },
-              { text: "Redux", correct: false },
+              { text: "Промисы", correct: false },
+              { text: "Дедлайны", correct: false },
               { text: "Юры", correct: false },
               { text: "Всего", correct: true },
             ],
           },
           {
-            question: "Что говорит Алёна в любой непонятной ситуации",
+            question: "Что говорит Алёна в любой непонятной ситуации?",
             score: 400,
             answers: [
               { text: "Пум-пум-пум", correct: false },
@@ -108,7 +108,7 @@ module.exports = {
             ],
           },
           {
-            question: "Сколько Кирилу лет",
+            question: "Сколько Кирилу лет?",
             score: 500,
             answers: [
               { text: "8", correct: false },
