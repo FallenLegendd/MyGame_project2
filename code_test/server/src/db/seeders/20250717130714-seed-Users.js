@@ -198,6 +198,36 @@ module.exports = {
               { text: "81", correct: false },
             ],
           },
+          {
+            question: "Самая сильная фигура в шахматных войсках?",
+            score: 300,
+            answers: [
+              { text: "Слон", correct: false },
+              { text: "Ладья", correct: false },
+              { text: "Ферзь ", correct: true },
+              { text: "Пешка", correct: false },
+            ],
+          },
+          {
+            question: "В каком веке появились шахматы?",
+            score: 400,
+            answers: [
+              { text: "в 7-ом веке", correct: false },
+              { text: "в 4-ом веке", correct: false },
+              { text: "в 6-ом веке", correct: false },
+              { text: "в 5-ом веке", correct: true },
+            ],
+          },
+          {
+            question: "Шахматная фигура, которая соединяет свойства слона и ладьи?",
+            score: 500,
+            answers: [
+              { text: "Ферзь ", correct: true },
+              { text: "Пешка", correct: false },
+              { text: "Конь", correct: false },
+              { text: "Король", correct: false },
+            ],
+          },
         ],
       },
       {
