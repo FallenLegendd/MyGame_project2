@@ -64,6 +64,20 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        question: 'Кто основал Московское княжество?',
+        game_id: 1,
+        score: 15,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        question: 'В честь какого события построен Собор Василия Блаженного?',
+        game_id: 1,
+        score: 20,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         question: 'Столица Бразилии?',
         game_id: 2,
         score: 15,
@@ -89,29 +103,43 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        answer: '1918',
-        question_id: 2,
-        correct_answer: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        answer: 'Бразилиа',
-        question_id: 3,
-        correct_answer: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        answer: 'Рио-де-Жанейро',
+        answer: '1915',
         question_id: 1,
         correct_answer: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        answer: 'Лев Толстой',
+        answer: '1916',
+        question_id: 1,
+        correct_answer: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        answer: '1918',
+        question_id: 1,
+        correct_answer: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        answer: 'Бразилиа',
         question_id: 2,
+        correct_answer: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        answer: 'Рио-де-Жанейро',
+        question_id: 2,
+        correct_answer: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        answer: 'Лев Толстой',
+        question_id: 3,
         correct_answer: true,
         createdAt: new Date(),
         updatedAt: new Date()
