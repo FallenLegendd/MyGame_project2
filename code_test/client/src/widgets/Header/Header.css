@@ -1,0 +1,149 @@
+.header {
+  background-color: #0f0524;
+  border-bottom: 3px solid #6e00ff;
+  box-shadow: 0 0 15px #6e00ff, 0 0 30px #ff00c8;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav,
+.auth-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav__link,
+.auth-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 15px;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+}
+
+.nav__link::before,
+.auth-link::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav__link:hover,
+.auth-link:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+
+.nav__link:hover::before,
+.auth-link:hover::before {
+  opacity: 1;
+}
+
+.nav__link_active {
+  background: linear-gradient(45deg, #ff00c8, #6e00ff);
+  box-shadow: 0 0 10px #ff00c8, 0 0 20px #6e00ff;
+  animation: pulse 2s infinite;
+}
+
+.auth-link {
+  background: linear-gradient(45deg, #00ffcc, #0099ff);
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #0099ff;
+}
+
+.auth-link:hover {
+  background: linear-gradient(45deg, #ff00c8, #6e00ff);
+  box-shadow: 0 0 15px #ff00c8, 0 0 30px #6e00ff;
+}
+
+.auth-link_active {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px #ff00c8, 0 0 20px #6e00ff;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff00c8, 0 0 20px #6e00ff;
+  }
+}
+
+.nav__link:last-child {
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900;
+  animation: discoText 3s infinite alternate;
+}
+
+@keyframes discoText {
+  0% {
+    color: #60a063;
+  }
+  20% {
+    color: #6e00ff;
+  }
+  40% {
+    color: #00ffcc;
+  }
+  60% {
+    color: #ffcc00;
+  }
+  80% {
+    color: #ffffff;
+  }
+  100% {
+    color: #0099ff;
+  }
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff00c8,
+    #6e00ff,
+    #00ffcc,
+    #ffcc00,
+    #ff0066,
+    #0099ff
+  );
+  background-size: 400% 400%;
+  animation: rainbow 5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

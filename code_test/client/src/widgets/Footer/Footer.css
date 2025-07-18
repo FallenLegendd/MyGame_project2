@@ -1,0 +1,76 @@
+.footer {
+  background-color: #0f0524;
+  border-top: 3px solid #6e00ff;
+  box-shadow: 0 0 15px #6e00ff, 0 0 30px #ff00c8;
+  position: relative;
+  padding: 30px 0;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff00c8,
+    #6e00ff,
+    #00ffcc,
+    #ffcc00,
+    #ff0066,
+    #0099ff
+  );
+  background-size: 400% 400%;
+  animation: rainbow 5s linear infinite;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-copyright {
+  color: #ffcc00;
+  text-shadow: 0 0 5px #ffcc00;
+  font-size: 14px;
+  margin-top: 20px;
+  animation: discoText 5s infinite alternate;
+}
+
+/* Анимации из хедера */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes discoText {
+  0% {
+    color: #ff00c8;
+  }
+  20% {
+    color: #ffffff;
+  }
+  40% {
+    color: #00ffcc;
+  }
+  60% {
+    color: #ffcc00;
+  }
+  80% {
+    color: #ff0066;
+  }
+  100% {
+    color: #0099ff;
+  }
+}
