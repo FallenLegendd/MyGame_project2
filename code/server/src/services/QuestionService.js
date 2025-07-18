@@ -1,4 +1,4 @@
-const { Question, Answer } = require("../db/models");
+const { Question, Answer, Game } = require("../db/models");
 
 class QuestionService {
   static async getAllQuestions() {
@@ -15,7 +15,15 @@ class QuestionService {
 
   static async getByTheme(game_id) {
     console.log("============>>>QuestionService.getByTheme<<<========");
-    const question = await Question.findAll({ where: { game_id } });
+    const question = await Question.findAll({
+      where: { game_id },
+      include: [
+        {
+          model: Game,
+          attributes: ["theme_name"],
+        },
+      ],
+    });
     if (!question) {
       return null;
     }
