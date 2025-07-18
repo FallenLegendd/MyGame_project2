@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/reduxHooks";
 import { signOutThunk } from "@/entities/user/api/UserApi";
 import { CLIENT_ROUTES } from "@/shared/enums/clientRoutes";
+import "./Header.css";
 
 export default function Header() {
   const user = useAppSelector((state) => state.user.user);
