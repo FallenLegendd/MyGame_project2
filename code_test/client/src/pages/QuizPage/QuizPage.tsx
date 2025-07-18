@@ -92,6 +92,7 @@ export default function QuizPage() {
               {scores.map((score) =>
                 themes.map((theme) => {
                   const q = questionsByTheme[theme.id]?.[score];
+                  const isAnswered = q && answers[q.id] !== undefined;
                   return (
                     <button
                       key={theme.id + "-" + score}
@@ -99,10 +100,10 @@ export default function QuizPage() {
                         "quiz-cell" +
                         (selectedCell === q?.id ? " quiz-cell-selected" : "")
                       }
-                      disabled={!q || !!answers[q.id]}
+                      disabled={!q || isAnswered}
                       onClick={() => handleCellClick(theme.id, score)}
                     >
-                      {q ? q.score : ""}
+                      {q && !isAnswered ? q.score : ""}
                     </button>
                   );
                 })

@@ -38,6 +38,10 @@ const quizSlice = createSlice({
       state.finished = true;
       state.modalOpen = false;
       state.currentQuestion = null;
+      // Сохраняем результат в localStorage
+      const results = JSON.parse(localStorage.getItem("quizResults") || "[]");
+      results.push({ score: state.score, date: new Date().toISOString() });
+      localStorage.setItem("quizResults", JSON.stringify(results));
     },
     resetQuiz(state) {
       state.theme = null;

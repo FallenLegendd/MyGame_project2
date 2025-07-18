@@ -283,6 +283,14 @@
   background: linear-gradient(90deg, #ff00c8 0%, #6e00ff 100%);
   color: #fff;
 }
+.quiz-modal-btn.correct {
+  background: linear-gradient(90deg, #00c853 0%, #43e97b 100%);
+  color: #fff;
+}
+.quiz-modal-btn.incorrect {
+  background: linear-gradient(90deg, #ff1744 0%, #ff616f 100%);
+  color: #fff;
+}
 .quiz-modal-timer {
   color: #6e00ff;
   font-size: 1.1rem;
