@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { UserValidator } from "@/entities/user/validation/User.validator";
 import { signInThunk } from "@/entities/user/api/UserApi";
 import { CLIENT_ROUTES } from "@/shared/enums/clientRoutes";
+import "./SignInForm.css";
 
 const INITIAL_INPUTS_DATA = {
   email: "",
@@ -52,29 +53,31 @@ export default function SignInForm() {
   }, [userError]);
 
   return (
-    <form className="signin-form" onSubmit={onSubmitHandler}>
-      <h2>Вход</h2>
-      <div className="form-group">
-        <input
-          type="email"
-          name="email"
-          placeholder="Email пользователя"
-          value={inputs.email}
-          onChange={onChangeHandler}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Пароль пользователя"
-          value={inputs.password}
-          onChange={onChangeHandler}
-          required
-        />
-      </div>
-      <button type="submit" disabled={userLoading}>
-        {userLoading ? "Загрузка..." : "Войти"}
-      </button>
-    </form>
+    <div className="sign">
+      <form className="signin-form" onSubmit={onSubmitHandler}>
+        <h2>Вход</h2>
+        <div className="form-group">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email пользователя"
+            value={inputs.email}
+            onChange={onChangeHandler}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Пароль пользователя"
+            value={inputs.password}
+            onChange={onChangeHandler}
+            required
+          />
+        </div>
+        <button type="submit" disabled={userLoading}>
+          {userLoading ? "Загрузка..." : "Войти"}
+        </button>
+      </form>
+    </div>
   );
 }

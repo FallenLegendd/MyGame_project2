@@ -1,0 +1,142 @@
+.main-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0a0025;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-page-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff00c8,
+    #6e00ff,
+    #00ffcc,
+    #ffcc00,
+    #ff0066,
+    #0099ff
+  );
+  background-size: 400% 400%;
+  animation: rainbow 5s linear infinite;
+}
+
+.main-content {
+  text-align: center;
+  z-index: 1;
+}
+
+.main-title {
+  color: #fff;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #6e00ff, 0 0 30px #ff00c8;
+  animation: pulse 2s infinite alternate;
+}
+
+.start-button {
+  padding: 15px 40px;
+  background: linear-gradient(45deg, #ff00c8, #6e00ff);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px #ff00c8, 0 0 30px #6e00ff;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  animation: buttonGlow 1.5s infinite;
+}
+
+.start-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes buttonGlow {
+  0% {
+    box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  }
+  50% {
+    box-shadow: 0 0 30px #ff00c8, 0 0 60px #6e00ff;
+  }
+  100% {
+    box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translate(-30%, -30%);
+  }
+  100% {
+    transform: rotate(30deg) translate(30%, 30%);
+  }
+}
+
+.register-hint {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.register-link {
+  color: #00ffcc;
+  text-shadow: 0 0 5px #00ffcc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  color: #ff00c8;
+  text-shadow: 0 0 10px #ff00c8;
+  text-decoration: underline;
+}

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { UserValidator } from "@/entities/user/validation/User.validator";
 import { signUpThunk } from "@/entities/user/api/UserApi";
 import { CLIENT_ROUTES } from "@/shared/enums/clientRoutes";
+import "./SignUpForm.css";
 
 const INITIAL_INPUTS_DATA = {
   username: "",
@@ -63,7 +64,7 @@ export default function SignUpForm() {
             autoFocus
             onChange={onChangeHandler}
             value={inputs.username}
-            className="form-input"
+            className="form-inputs"
           />
         </div>
         <div className="form-group">
@@ -73,7 +74,7 @@ export default function SignUpForm() {
             placeholder="Email"
             onChange={onChangeHandler}
             value={inputs.email}
-            className="form-input"
+            className="form-inputs"
           />
         </div>
         <div className="form-group">
@@ -83,7 +84,7 @@ export default function SignUpForm() {
             placeholder="Пароль"
             onChange={onChangeHandler}
             value={inputs.password}
-            className="form-input"
+            className="form-inputs"
           />
         </div>
         <button type="submit" disabled={userLoading} className="submit-btn">
