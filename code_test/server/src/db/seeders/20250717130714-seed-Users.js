@@ -330,7 +330,7 @@ module.exports = {
           },
           {
             question: "В какой европейской стране находится город Амстердам?",
-            score: 400,
+            score: 500,
             answers: [
               { text: "Швейцария", correct: false },
               { text: "Дания", correct: false },
