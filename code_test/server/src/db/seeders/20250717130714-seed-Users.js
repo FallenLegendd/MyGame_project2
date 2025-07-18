@@ -34,11 +34,11 @@ module.exports = {
     // Темы (Games)
     const themes = [
       "Эльбрус студенты",
-      "Агент 007",
+      "Эльбрус преподаватели",
       "Шахматы",
       "Евгений Онегин",
       "Страны и народы",
-      "Жёлтая тема",
+      "Цитаты Макса Стетхэма. Дополни",
     ];
     await queryInterface.bulkInsert(
       "Games",
@@ -120,26 +120,56 @@ module.exports = {
         ],
       },
       {
-        theme: "Агент 007",
+        theme: "Эльбрус преподаватели",
         questions: [
           {
-            question: "Как зовут главного героя фильмов о Джеймсе Бонде?",
+            question: "Какой сериал любит Даша?",
             score: 100,
             answers: [
-              { text: "Джеймс Бонд", correct: true },
-              { text: "Итан Хант", correct: false },
-              { text: "Джейсон Борн", correct: false },
-              { text: "Джек Райан", correct: false },
+              { text: "Как я встретил вашу маму?", correct: false },
+              { text: "Друзья", correct: true },
+              { text: "Кухня", correct: false },
+              { text: "Даша не любит сериалы", correct: false },
             ],
           },
           {
-            question: "Какой номер у агента Бонда?",
+            question: "Что нравится Максу больше всего?",
             score: 200,
             answers: [
-              { text: "007", correct: true },
-              { text: "001", correct: false },
-              { text: "002", correct: false },
-              { text: "101", correct: false },
+              { text: "Создавать папки", correct: false },
+              { text: "Создавать папки в папках", correct: false },
+              { text: "Создавать папки для папок в папках", correct: false },
+              { text: "Сойки", correct: true },
+            ],
+          },
+          {
+            question: "Что чаще всего пишут в чате зума на выпускных 3-ей фазы?",
+            score: 300,
+            answers: [
+              { text: "Не слышно!!!", correct: false },
+              { text: "Кто отключил звук Дэну?", correct: false },
+              { text: "Он дудит или притворяется?", correct: false },
+              { text: "Всё выше перечисленное", correct: true },
+            ],
+          },
+          {
+            question: "Что вы знаете о Юре?",
+            score: 400,
+            answers: [
+              { text: "Юра по выходным гуляет по горуду с бумажной картой", correct: false },
+              { text: "Он кажется жёстким, но в душе зефирка", correct: false },
+              { text: "Юра любит студентов Эльбрус", correct: false },
+              { text: "Всё выше перечисленное", correct: true },
+            ],
+          },
+          {
+            question: "Любимый овощь Дэна?",
+            score: 500,
+            answers: [
+              { text: "Лук", correct: false },
+              { text: "Баклажан", correct: false },
+              { text: "Огурчик", correct: true },
+              { text: "Помидорчик", correct: false },
             ],
           },
         ],
