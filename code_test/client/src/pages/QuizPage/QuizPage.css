@@ -1,0 +1,216 @@
+.quiz-page {
+  min-height: 100vh;
+  background-color: #0a0025;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.quiz-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff00c8,
+    #6e00ff,
+    #00ffcc,
+    #ffcc00,
+    #ff0066,
+    #0099ff
+  );
+  background-size: 400% 400%;
+  animation: rainbow 5s linear infinite;
+}
+
+.quiz-container {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  z-index: 1;
+}
+
+.quiz-title {
+  color: #ffd966;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #000, 0 0 5px #ffd966;
+  letter-spacing: 3px;
+  animation: pulse 2s infinite alternate;
+}
+
+.quiz-board-wrapper {
+  position: relative;
+}
+
+.quiz-loading {
+  color: #ffd966;
+  font-size: 1.5rem;
+  margin: 2rem 0;
+}
+
+.quiz-error {
+  color: #ff616f;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  background: rgba(255, 97, 111, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 97, 111, 0.3);
+}
+
+.quiz-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin: 0 auto;
+  max-width: 900px;
+  background: rgba(0, 10, 58, 0.7);
+  border-radius: 15px;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-theme-cell {
+  background: linear-gradient(135deg, #001a6b, #000a3a);
+  color: #ffd966;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 15px 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 0 0 5px #000;
+  border: 1px solid rgba(255, 217, 102, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.quiz-cell {
+  background: linear-gradient(135deg, #001a6b, #000a3a);
+  color: #ffd966;
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 80px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-cell:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-cell:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.quiz-cell-answered {
+  background: linear-gradient(135deg, #222a4a, #1a1a3a);
+  color: rgba(255, 217, 102, 0.3);
+}
+
+.quiz-cell-selected {
+  background: radial-gradient(circle, #4ecfff 0%, #001a6b 80%);
+  color: #fff;
+  box-shadow: 0 0 20px #4ecfff;
+  transform: scale(1.05);
+}
+
+.quiz-finish-button {
+  padding: 15px 40px;
+  background: linear-gradient(45deg, #ff00c8, #6e00ff);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px #ff00c8, 0 0 30px #6e00ff;
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.quiz-finish-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  animation: buttonGlow 1.5s infinite;
+}
+
+.quiz-finish-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #fff, 0 0 20px #6e00ff;
+  }
+  100% {
+    transform: scale(1.05);
+    text-shadow: 0 0 15px #fff, 0 0 30px #6e00ff;
+  }
+}
+
+@keyframes buttonGlow {
+  0% {
+    box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  }
+  50% {
+    box-shadow: 0 0 30px #ff00c8, 0 0 60px #6e00ff;
+  }
+  100% {
+    box-shadow: 0 0 20px #ff00c8, 0 0 40px #6e00ff;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translate(-30%, -30%);
+  }
+  100% {
+    transform: rotate(30deg) translate(30%, 30%);
+  }
+}
