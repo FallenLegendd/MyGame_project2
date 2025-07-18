@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import {
-  setTheme,
-  openQuestion,
-  finishGame,
-} from "@/entities/quiz/slice/quizSlice";
+import { openQuestion, finishGame } from "@/entities/quiz/slice/quizSlice";
 import QuestionModal from "@/entities/quiz/ui/QuestionModal/QuestionModal";
 import { useNavigate } from "react-router";
 import { CLIENT_ROUTES } from "@/shared/enums/clientRoutes";
 import { getAllThunkGame } from "@/entities/game/api/GameApi";
 import { getAllThunk } from "@/entities/question/api/questionApi";
+import "./QuizPage.css";
 
 export default function QuizPage() {
   const dispatch = useAppDispatch();
@@ -32,11 +29,9 @@ export default function QuizPage() {
     dispatch(getAllThunk());
   }, [dispatch]);
 
-  // Собираем уникальные темы и стоимости
   const themes = games || [];
   const scores = [100, 200, 300, 400, 500];
 
-  // Группируем вопросы по теме и стоимости
   const questionsByTheme: Record<number, Record<number, any>> = {};
   if (questions) {
     for (const q of questions) {
@@ -58,28 +53,26 @@ export default function QuizPage() {
     navigate(CLIENT_ROUTES.QUIZ_RESULT);
   };
 
-  // При открытии модалки выделяем ячейку
   useEffect(() => {
     if (!modalOpen) setSelectedCell(null);
   }, [modalOpen]);
 
   return (
-    <div
-      className="quiz-page main-page-container"
-      style={{ minHeight: "100vh", background: "#000a3a" }}
-    >
-      <div className="main-content">
-        <h1 className="quiz-board-title">Викторина</h1>
+    <div className="quiz-page">
+      <div className="quiz-container">
+        <h1 className="quiz-title">Викторина</h1>
+
         <div className="quiz-board-wrapper">
           {(gamesLoading || questionsLoading) && (
-            <div style={{ color: "#ffd966" }}>Загрузка...</div>
+            <div className="quiz-loading">Загрузка...</div>
           )}
-          {gamesError && (
-            <div style={{ color: "red" }}>Ошибка: {gamesError}</div>
-          )}
+
+          {gamesError && <div className="quiz-error">Ошибка: {gamesError}</div>}
+
           {questionsError && (
-            <div style={{ color: "red" }}>Ошибка: {questionsError}</div>
+            <div className="quiz-error">Ошибка: {questionsError}</div>
           )}
+
           {themes.length > 0 && (
             <div className="quiz-board">
               {/* Темы */}
@@ -88,6 +81,7 @@ export default function QuizPage() {
                   {theme.theme_name}
                 </div>
               ))}
+
               {/* Кнопки */}
               {scores.map((score) =>
                 themes.map((theme) => {
@@ -95,29 +89,26 @@ export default function QuizPage() {
                   const isAnswered = q && answers[q.id] !== undefined;
                   return (
                     <button
-                      key={theme.id + "-" + score}
-                      className={
-                        "quiz-cell" +
-                        (selectedCell === q?.id ? " quiz-cell-selected" : "")
-                      }
+                      key={`${theme.id}-${score}`}
+                      className={`quiz-cell ${
+                        selectedCell === q?.id ? "quiz-cell-selected" : ""
+                      } ${isAnswered ? "quiz-cell-answered" : ""}`}
                       disabled={!q || isAnswered}
                       onClick={() => handleCellClick(theme.id, score)}
                     >
-                      {q && !isAnswered ? q.score : ""}
+                      {q && !isAnswered ? q.score : isAnswered ? "✓" : ""}
                     </button>
                   );
                 })
               )}
             </div>
           )}
-          <button
-            className="finish-btn start-button"
-            style={{ marginTop: 32 }}
-            onClick={handleFinish}
-          >
+
+          <button className="quiz-finish-button" onClick={handleFinish}>
             Завершить игру
           </button>
         </div>
+
         {modalOpen && <QuestionModal />}
       </div>
     </div>
