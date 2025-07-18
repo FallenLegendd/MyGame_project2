@@ -36,7 +36,7 @@ export default function Header() {
           {user?.username ? (
             <>
               <NavLink
-                to={CLIENT_ROUTES.GAME}
+                to={CLIENT_ROUTES.QUIZ}
                 className={({ isActive }) =>
                   `nav__link ${isActive ? "nav__link_active" : ""}`
                 }
@@ -45,7 +45,7 @@ export default function Header() {
               </NavLink>
 
               <NavLink
-                to={CLIENT_ROUTES.RESULT}
+                to={CLIENT_ROUTES.QUIZ_RESULT}
                 className={({ isActive }) =>
                   `nav__link ${isActive ? "nav__link_active" : ""}`
                 }
